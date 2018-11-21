@@ -14,7 +14,7 @@
 
        <div class="section">
          <ul>
-           <li>
+           <li @click="toPerson()">
              <div class="left">
                人员管理
              </div>
@@ -22,7 +22,7 @@
                 <img src="../../../static/images/next@2x.png" alt="">
              </div>
            </li>
-           <li>
+           <li @click="toCollection">
              <div class="left">
                收款账号
              </div>
@@ -60,6 +60,13 @@
              <div class="right">
              </div>
            </li>
+           <li class="mt30" @click="toLogin()">
+             <div class="left">
+               收款账号信息
+             </div>
+             <div class="right">
+             </div>
+           </li>
          </ul>
        </div>
   </div>
@@ -74,6 +81,27 @@ export default {
   data() {
     return {};
   },
+   methods:{
+        toCollection(){
+          wx.navigateTo({
+            url:'../collection/add/main'
+          })
+        },
+
+        // 人员管理
+        toPerson(){
+           wx.navigateTo({
+            url:'../manager/add/main'
+          })
+        },
+         toLogin(){
+          wx.navigateTo({
+            url:'../collection/wechat/main'
+          })
+        },
+
+
+   },
 
   created() {}
 };

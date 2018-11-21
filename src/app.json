@@ -2,12 +2,22 @@
   "pages": [
     "pages/index/main",
     "pages/order/main",
-    "pages/mine/main"
+    "pages/mine/main",
+    "pages/login/main",
+    "pages/password/main",
+    "pages/manager/add/main",
+    "pages/manager/modify/main",
+    "pages/collection/add/main",
+    "pages/collection/addMsg/main",
+    "pages/collection/mainCount/main",
+    "pages/collection/wechat/main"
+
+
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "楼上请",
     "navigationBarTextStyle": "black",
     "backgroundColor":"#fcc"
   },
