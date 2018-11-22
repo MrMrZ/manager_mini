@@ -60,13 +60,7 @@
              <div class="right">
              </div>
            </li>
-           <li class="mt30" @click="toLogin()">
-             <div class="left">
-               收款账号信息
-             </div>
-             <div class="right">
-             </div>
-           </li>
+        
          </ul>
        </div>
   </div>
@@ -94,12 +88,6 @@ export default {
             url:'../manager/add/main'
           })
         },
-         toLogin(){
-          wx.navigateTo({
-            url:'../collection/wechat/main'
-          })
-        },
-
 
    },
 

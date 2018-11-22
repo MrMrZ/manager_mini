@@ -7,10 +7,19 @@
     "pages/password/main",
     "pages/manager/add/main",
     "pages/manager/modify/main",
+    "pages/manager/addInfo/main",
     "pages/collection/add/main",
     "pages/collection/addMsg/main",
     "pages/collection/mainCount/main",
-    "pages/collection/wechat/main"
+    "pages/collection/wechat/main",
+    "pages/message/type/main",
+    "pages/message/lists/main",
+    "pages/message/feedback/main",
+    "pages/message/details/main"
+
+
+
+
 
 
   ],
