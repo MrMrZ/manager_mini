@@ -14,11 +14,13 @@
           <div class="title">{{item.type}}</div>
           <div class="details">{{item.des}}</div>
         </div>
+
     
   </div>
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -43,7 +45,9 @@ export default {
     };
   },
 
-  components: {},
+  components: {
+    
+  },
 
   methods: {
     // 消息详情

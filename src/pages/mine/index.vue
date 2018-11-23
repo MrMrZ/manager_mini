@@ -46,7 +46,7 @@
                 <switch checked bindchange="switch1Change" class="btn"/>
              </div>
            </li>
-           <li class="mt30">
+           <li class="mt30" @click="Call">
              <div class="left">
                联系我们
              </div>
@@ -99,7 +99,12 @@ export default {
             url:url
            })
        },
-
+    // 拨打电话
+    Call(){
+      wx.makePhoneCall({
+        phoneNumber: '18102840611' //仅为示例，并非真实的电话号码
+      })
+    },
 
        toLogin(){
           wx.navigateTo({

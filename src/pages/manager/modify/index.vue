@@ -16,7 +16,7 @@
           </view>
           
 
-        <view class="modify">
+        <view class="modify" v-show="isSelect==2">
            <view class="title edit">
                   <view class="left">填写信息</view>
           </view>
@@ -30,9 +30,10 @@
            <view class="phone_con">
                 <view class="phone">验证码</view>
                 <view class="input_phone"> <input type="number" placeholder="填写验证码"></view>
-                <view class="getCode" v-show="!isGetCode" @click="getCode">获取验证码</view>
-                <view class="getCode active" v-show="isGetCode">倒计时{{time}}s</view>
-
+                <!-- <view class="getCode" v-show="!isGetCode" @click="getCode">获取验证码</view>
+                <view class="getCode active" v-show="isGetCode">倒计时{{time}}s</view> -->
+                <!-- 获取验证码 -->
+                <getCode :phoneNum="phoneNum"></getCode>
            </view>
 
                 <view class="title edit">
@@ -55,31 +56,20 @@
 </template>
 
 <script>
+import getCode from "@/components/getCode";
 export default {
   data(){
     return {
-        time:60, //倒计时
-        isGetCode:false,
+        phoneNum:'18813960131',
         isSelect:2, //1是离职，2是更换手机
     }
   },
-  components: {},
+  components: {
+    getCode
+  },
 
   computed: {},
   methods: {
-      // 获取验证码
-      getCode(){
-        var that = this;
-        that.isGetCode = true;
-        var timer = setInterval(()=>{
-            that.time--;
-            if(that.time<0){
-              that.isGetCode = false;
-              clearInterval(timer);
-              that.time = 60;
-            }
-        },1000)
-      },
       //选择是离职还是更换手机号
       toSelect(index){
           var that = this;

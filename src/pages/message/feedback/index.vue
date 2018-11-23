@@ -15,7 +15,7 @@
                 确定
         </view>
 
-          <view class="btn unbind">
+          <view class="btn unbind" @click="Call">
                 拨打电话
         </view>
   </div>
@@ -41,7 +41,14 @@ export default {
         if(that.number<=0){
            that.isWhite = true;
         }
+    },
+    // 拨打电话
+    Call(){
+      wx.makePhoneCall({
+        phoneNumber: '18102840611' //仅为示例，并非真实的电话号码
+      })
     }
+
   }
 };
 </script>
@@ -89,7 +96,7 @@ export default {
     height: 310rpx;
     font-family: PingFang-SC-Regular;
     font-size: 24rpx;
-    color:rgb(137,137,137);
+    color:#000;
     box-sizing: border-box;
     padding-top: 50rpx;
 

@@ -21,7 +21,7 @@
         <view class="tip mt30">当你想指定代理人收款时，只需要用代理人
 的微信扫一扫此二维码即可。</view>
 
-        <view class="btn ">
+        <view class="btn " @click="saveImage">
                 保存图片
         </view>
 
@@ -33,7 +33,19 @@
 export default {
   components: {},
   computed: {},
-  methods: {}
+  methods: {
+    // 保存到相册
+    saveImage(){
+      console.log('22222222')
+      wx.saveImageToPhotosAlbum({
+        filePath:'../../../../static/images/QRcode@2x.png',
+        success(res) { 
+          alert('2222');
+          
+        }
+      })
+    }
+  }
 };
 </script>
 
