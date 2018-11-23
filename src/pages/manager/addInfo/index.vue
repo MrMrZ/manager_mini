@@ -23,7 +23,8 @@
            <view class="phone_con">
                 <view class="phone">验证码</view>
                 <view class="input_phone"> <input type="number" placeholder="填写验证码"></view>
-                <view class="getCode">获取验证码</view>
+                  <view class="getCode" v-show="!isGetCode" @click="getCode">获取验证码</view>
+                <view class="getCode active" v-show="isGetCode">倒计时{{time}}s</view>
            </view>
 
                 <view class="title edit">
@@ -47,6 +48,12 @@
 
 <script>
 export default {
+  data(){
+    return {
+        time:60, //验证码倒计时
+        isGetCode:false,
+    }
+  },
   components: {},
 
   computed: {},
@@ -55,7 +62,20 @@ export default {
       wx.navigateTo({
             url:'../addInfo/main'
       })
-    }
+    },
+     // 获取验证码
+      getCode(){
+        var that = this;
+        that.isGetCode = true;
+        var timer = setInterval(()=>{
+            that.time--;
+            if(that.time<0){
+              that.isGetCode = false;
+              clearInterval(timer);
+              that.time = 60;
+            }
+        },1000)
+      },
   }
 };
 </script>
@@ -181,6 +201,11 @@ export default {
       border-radius: 6rpx;
       margin-top: 25rpx;
       margin-right: 42rpx;
+    }
+
+    .active{
+      color:rgb(191, 191, 191);
+      border: 1px solid rgb(191, 191, 191);
     }
   }
 

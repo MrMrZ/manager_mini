@@ -87,7 +87,7 @@ export default {
                   url = '../collection/add/main';
                   break;
               case 3: //我的消息
-                  url = '../message/lists/main';
+                  url = '../message/type/main';
                   break;
               case 4:
                   url = '../login/main';

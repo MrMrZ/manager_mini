@@ -6,7 +6,7 @@
           </view>
        <div class="section">
          <ul>
-           <li @click="toPerson()">
+           <li @click="toMsg()">
              <div class="left">
                交易提醒
              </div>
@@ -14,7 +14,7 @@
                 <img src="../../../../static/images/next@2x.png" alt="">
              </div>
            </li>
-           <li class="mt30">
+           <li class="mt30" @click="toMsg()">
              <div class="left">
                系统消息
              </div>
@@ -40,10 +40,10 @@ export default {
    methods:{
        
 
-        // 人员管理
-        toPerson(){
+        // 消息列表管理
+        toMsg(){
            wx.navigateTo({
-            url:'../manager/add/main'
+            url:'../lists/main'
           })
         },
       

@@ -1,17 +1,18 @@
 <template>
   <div  class="content" >
-    
        <view class="has_person" >
           <view class="title">
                   <view class="left">当前经理：林夕</view>
           </view>
           <!-- 授权人信息 -->
-          <view class="message">
+          <view class="message" @click="toSelect(1)">
                 <view class="username">离职</view>
+                <view class="select" v-show="isSelect===1">  <img src="../../../../static/images/success@2x.png" alt=""></view>
+
           </view>
-          <view class="message">
+          <view class="message"  @click="toSelect(2)">
                 <view class="username">更换手机号</view>
-                <view class="select">  <img src="../../../../static/images/success@2x.png" alt=""></view>
+                <view class="select" v-show="isSelect===2">  <img src="../../../../static/images/success@2x.png" alt=""></view>
           </view>
           
 
@@ -29,7 +30,9 @@
            <view class="phone_con">
                 <view class="phone">验证码</view>
                 <view class="input_phone"> <input type="number" placeholder="填写验证码"></view>
-                <view class="getCode">获取验证码</view>
+                <view class="getCode" v-show="!isGetCode" @click="getCode">获取验证码</view>
+                <view class="getCode active" v-show="isGetCode">倒计时{{time}}s</view>
+
            </view>
 
                 <view class="title edit">
@@ -53,10 +56,36 @@
 
 <script>
 export default {
+  data(){
+    return {
+        time:60, //倒计时
+        isGetCode:false,
+        isSelect:2, //1是离职，2是更换手机
+    }
+  },
   components: {},
 
   computed: {},
-  methods: {}
+  methods: {
+      // 获取验证码
+      getCode(){
+        var that = this;
+        that.isGetCode = true;
+        var timer = setInterval(()=>{
+            that.time--;
+            if(that.time<0){
+              that.isGetCode = false;
+              clearInterval(timer);
+              that.time = 60;
+            }
+        },1000)
+      },
+      //选择是离职还是更换手机号
+      toSelect(index){
+          var that = this;
+          that.isSelect = index;
+      }
+  }
 };
 </script>
 
@@ -181,6 +210,12 @@ export default {
       border-radius: 6rpx;
       margin-top: 25rpx;
       margin-right: 42rpx;
+    }
+
+    
+    .active{
+      color:rgb(191, 191, 191);
+      border: 1px solid rgb(191, 191, 191);
     }
   }
 

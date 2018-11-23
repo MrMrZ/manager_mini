@@ -1,44 +1,47 @@
 <template>
   <div class="content">
-     <div>
+      <div class="cont_box" :class="{'mt30':index>0}" v-for="(item,index) in lists" :key="item.id">
           <div class="top">
-              <div class="left">2018111023456</div>
+              <div class="left">{{item.order_id}}</div>
               <div class="right">
-                <span class="type">线上</span>
+                <span class="type" v-if="item.type==1">线上</span>
+                <span class="type" v-else-if="item.type==2">线下</span>
+
                 <span class="point_con">
-                  <span class="point color_yellow"></span>
+                  <span class="point color_yellow"  v-if="item.status==0"></span>
+                  <span class="point color_green"  v-else-if="item.status==1"></span>
+
                 </span>
-                <span class="status font_yellow">未结算</span>
+                <span class="status font_yellow" v-if="item.status==0">未结算</span>
+                <span class="status  font_green" v-else-if="item.status==1">已结算</span>
+
               </div>
             </div>
             <div class="middle">
                 <view class="data_wrp">
                   <view class="item">
-                      <view class="number">2200.00</view>
+                      <view class="number">{{item.total}}</view>
                       <view  class="des">账单金额</view>
                   </view>
                   <view class="item">
-                      <view class="number">176.00</view>
+                      <view class="number">{{item.server}}</view>
                       <view  class="des">平台服务费</view>
                   </view>
                   <view class="item">
-                      <view class="number">1944.00</view>
+                      <view class="number">{{item.real_income}}</view>
                       <view  class="des">回款金额</view>
                   </view>
 
                 </view>
             </div>
-            <div class="msg">
+            <div class="msg" v-show="item.type==2">
               <span class="point"></span>
-                <span class="txt">已扣除历史待结服务费：80.00（流水号：2018111023777）</span>
+                <span class="txt" >已扣除历史待结服务费：80.00（流水号：{{item.order_id}}）</span>
             </div>
             <div class="pay_time">
-              用户支付时间：2018-11-09  13:27:24
+              用户支付时间：{{item.date}}
             </div>
        </div>
-
-
-
       
 
   </div>
@@ -49,7 +52,8 @@
 export default {
   data() {
     return {};
-  }
+  },
+  props:['lists']
 };
 </script>
 
@@ -57,8 +61,14 @@ export default {
 .content {
   width: 100%;
   height: 382rpx;
-  background-color: #fff;
   box-sizing: border-box;
+  .cont_box{
+    background-color: #fff;
+  }
+
+  .mt30{
+    margin-top: 30rpx;
+  }
   .top {
     width: 100%;
     height: 73rpx;
