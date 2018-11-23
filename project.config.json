@@ -9,7 +9,7 @@
 	},
 	"miniprogramRoot": "dist/wx/",
 	"compileType": "miniprogram",
-	"appid": "touristappid",
+	"appid": "wx743d23552ba0e36a",
 	"projectname": "manager_mini",
 	"condition": {
 		"search": {

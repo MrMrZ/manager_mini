@@ -2,19 +2,11 @@
   <div class="content">
        
 
-        <div class="msg ">
-          <div class="title">交易提醒</div>
-          <div class="details">您的微信钱包于2018年11月21日17:47:00已收入人民币3.000.00元。点击查看详情。</div>
+        <div class="msg " v-for="item in lists" :key="item.id" @click="toDetials()">
+          <div class="title">{{item.type}}</div>
+          <div class="details">{{item.des}}</div>
         </div>
-        <div class="msg ">
-          <div class="title">系统消息</div>
-            <div class="details">您的微信钱包于2018年11月21日17:47:00已收入人民币3.000.00元。点击查看详情。</div>
-
-        </div>
-        <div class="msg ">
-          <div class="title">系统消息</div>
-          <div class="details">您于2018年10月20日21:57:00反馈的问题我们已经收到并回复了，点击查看详情。</div>
-        </div>
+       
   </div>
 </template>
 
@@ -23,7 +15,23 @@
 export default {
   data () {
     return {
-     
+       lists: [
+        {
+          id: 1,
+          type: "交易提醒",
+          des:   "您的微信钱包于2018年11月21日17:47:00已收入人民币3.000.00元。点击查看详情。"
+        },
+        {
+          id: 2,
+          type: "交易提醒",
+          des: "您的微信钱包于2018年11月21日17:47:00已收入人民币3.000.00元。点击查看详情。"
+        },
+        {
+          id: 3,
+          type: "系统提醒",
+          des:"您的微信钱包于2018年11月21日17:47:00已收入人民币3.000.00元。点击查看详情。"
+        }
+      ]
     }
   },
 
@@ -32,7 +40,11 @@ export default {
   },
 
   methods: {
-     
+     toDetials(){
+             wx.navigateTo({
+               url:'../details/main'
+           })
+     }
   },
 
   created () {

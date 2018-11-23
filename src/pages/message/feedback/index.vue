@@ -7,8 +7,8 @@
 
           <view class="_input">
             <view class="order_id">流水号：3124272564163</view>
-            <textarea  class="feedback" maxlength="-1"  placeholder="请具体描述您遇到的问题，我们将尽快给您反馈。" ></textarea>
-            <span class="number">200<span class="all">/200</span> </span>
+            <textarea  :disabled="isWhite" class="feedback" maxlength="-1"  placeholder="请具体描述您遇到的问题，我们将尽快给您反馈。" v-model="desctiption" @input="calculate"></textarea>
+            <span class="number">{{number}}<span class="all">/200</span> </span>
           </view>
 
         <view class="btn set">
@@ -23,9 +23,26 @@
 
 <script>
 export default {
+  data(){
+    return{
+      desctiption:'',
+      number:200,
+      isWhite:false,
+    }
+  },
   components: {},
   computed: {},
-  methods: {}
+  methods: {
+    // 计算输入数字
+    calculate(){
+        var that = this;
+        var len = that.desctiption.length;
+        that.number = 200-len;
+        if(that.number<=0){
+           that.isWhite = true;
+        }
+    }
+  }
 };
 </script>
 

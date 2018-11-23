@@ -55,7 +55,7 @@
              </li>
            </ul>
 
-         <view class="doubt">对此订单有疑问？</view>
+         <view class="doubt" @click="toFeedback()">对此订单有疑问？</view>
 
          </view>
 
@@ -72,7 +72,13 @@ export default {
 
   components: {},
 
-  methods: {},
+  methods: {
+    toFeedback(){
+        wx.navigateTo({
+               url:'../feedback/main'
+           })
+    }
+  },
 
   created() {}
 };

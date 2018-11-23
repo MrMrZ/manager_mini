@@ -16,12 +16,6 @@
     "pages/message/lists/main",
     "pages/message/feedback/main",
     "pages/message/details/main"
-
-
-
-
-
-
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -14,7 +14,9 @@
             <view class="code">
               <input type="number" placeholder="请输入验证码">
             </view>
-            <view class="getCode">获取验证码</view>
+            <view class="getCode" v-show="!isGetCode" @click="getCode">获取验证码</view>
+            <view class="getCode active" v-show="isGetCode">倒计时{{time}}s</view>
+
          </view>
 
          <view class="login_btn">登录</view>
@@ -23,10 +25,41 @@
 
 <script>
 export default {
+  data(){
+    return{
+        time:60, //验证码倒计时
+        isGetCode:false,
+    }
+  },
   components: {},
 
   computed: {},
-  methods: {}
+  methods: {
+      // 获取验证码
+      getCode(){
+        var that = this;
+        that.isGetCode = true;
+        var timer = setInterval(function(){
+            that.time--;
+            if(that.time<0){
+               that.isGetCode = false;
+               clearInterval(timer);
+               that.time = 60;
+            }
+        },1000);
+      },
+       // 判断是否为手机号
+        isPoneAvailable(pone) {
+            var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+            if (!myreg.test(pone)) {
+                return false;
+            } else {
+                return true;
+            }
+        },
+
+
+  }
 };
 </script>
 
@@ -139,6 +172,9 @@ export default {
       color: rgb(167, 53, 61);
       font-family: PingFang-SC-Regular;
       text-align: center;
+    }
+    .active{
+      color:rgb(191, 191, 191);
     }
   }
 

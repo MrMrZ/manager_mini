@@ -1,16 +1,16 @@
 <template>
   <div  class="content" >
-       <!-- 有人 -->
+       <!-- 有账户 -->
        <view class="has_person" v-show="true">
         
           <view class="title">
                   <view class="left">当前微信收款账号：1个</view>
-                  <view class="right"> <span class="add_icon">+</span> <span>新增</span></view>
+                  <view class="right" @click="addWeChat()"> <span class="add_icon">+</span> <span>新增</span></view>
           </view>
 
           <!-- 授权人信息 -->
-          <view class="msg_con">
-            <view class="message">
+          <view class="msg_con"> 
+            <view class="message"  @click="mainCount()">
               <img src="../../../../static/images/wechat@2x.png" alt="">
               <view class="main">主卡</view>
           </view>
@@ -20,12 +20,12 @@
             <!-- 有人 -->
           <view class="title mt30">
                   <view class="left">当前公司收款账号：1个</view>
-                  <view class="right"> <span class="add_icon">+</span> <span>新增</span></view>
+                  <view class="right" @click="addCard()"> <span class="add_icon">+</span> <span>新增</span></view>
           </view>
 
           <!-- 授权人信息 -->
           <view class="msg_con">
-              <view class="message">
+              <view class="message" @click="mainCount()"> 
                 <img src="../../../../static/images/zhaoshang@2x.png" alt="">
                   <view class="number">**** **** **** 0223</view>
             </view>
@@ -33,15 +33,15 @@
        </view>
 
 
-        <!-- 没人 -->
-       <view class="no_person" v-show="false">
+        <!-- 没有账号 -->
+       <view class="no_person mt30" v-show="true">
 
          <view class="title">
                   <view class="left">当前微信收款账号：无</view>
           </view>
 
           <!-- 授权人信息 -->
-          <view class="message new">
+          <view class="message new" @click="addWeChat()">
                 <span class="new_add">+</span>
                 <span class="add_txt">新增</span>
           </view>
@@ -52,7 +52,7 @@
           </view>
 
           <!-- 授权人信息 -->
-          <view class="message new">
+          <view class="message new" @click="addCard()">
                 <span class="new_add">+</span>
                 <span class="add_txt">新增</span>
           </view>
@@ -70,7 +70,27 @@ export default {
   components: {},
 
   computed: {},
-  methods: {}
+  methods: {
+    // 新增微信账号
+    addWeChat(){
+       wx.navigateTo({
+            url:'../wechat/main'
+      })
+    },
+    //新增银行卡账号
+    addCard(){
+       wx.navigateTo({
+            url:'../addMsg/main'
+      })
+    },
+
+    // 主账号信息
+    mainCount(){
+       wx.navigateTo({
+            url:'../mainCount/main'
+      })
+    }
+  }
 };
 </script>
 

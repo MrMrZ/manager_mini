@@ -14,7 +14,7 @@
 
        <div class="section">
          <ul>
-           <li @click="toPerson()">
+           <li @click="toPages(1)">
              <div class="left">
                人员管理
              </div>
@@ -22,7 +22,7 @@
                 <img src="../../../static/images/next@2x.png" alt="">
              </div>
            </li>
-           <li @click="toCollection">
+           <li @click="toPages(2)">
              <div class="left">
                收款账号
              </div>
@@ -30,7 +30,7 @@
                 <img src="../../../static/images/next@2x.png" alt="">
              </div>
            </li>
-           <li>
+           <li @click="toPages(3)">
              <div class="left">
                我的消息
              </div>
@@ -53,14 +53,14 @@
              <div class="right">
              </div>
            </li>
-           <li class="mt30">
+           <li class="mt30" @click="toPages(4)">
              <div class="left">
                退出登录
              </div>
              <div class="right">
              </div>
            </li>
-        
+         
          </ul>
        </div>
   </div>
@@ -76,19 +76,36 @@ export default {
     return {};
   },
    methods:{
-        toCollection(){
-          wx.navigateTo({
-            url:'../collection/add/main'
-          })
-        },
+       //  跳转页面
+       toPages(index){
+           var url = '';
+            switch(index){
+              case 1: // 人员管理
+                  url = '../manager/add/main';
+                  break;
+              case 2: //  收款账号
+                  url = '../collection/add/main';
+                  break;
+              case 3: //我的消息
+                  url = '../message/lists/main';
+                  break;
+              case 4:
+                  url = '../login/main';
+                  break;
+              default:
 
-        // 人员管理
-        toPerson(){
+            }
            wx.navigateTo({
-            url:'../manager/add/main'
-          })
-        },
+            url:url
+           })
+       },
 
+
+       toLogin(){
+          wx.navigateTo({
+            url:'../password/main'
+           })
+       }
    },
 
   created() {}

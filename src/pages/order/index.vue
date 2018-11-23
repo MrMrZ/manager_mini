@@ -3,8 +3,8 @@
        <!-- 搜索框 -->
       <div class="search">
         <div class="left">
-            <input type="text">
-            <div class="txt">
+            <input type="text" @focus="toHidden" @blur="toSearch" >
+            <div class="txt" v-show="ishidden">
                <icon type="search" size="12" />
               <span class="tip">搜索流水号</span>
             </div>
@@ -28,7 +28,11 @@ import myTable from '@/components/Table'
 
 
 export default {
-  
+  data(){
+    return{
+        ishidden:true, //是否隐藏  
+    }
+  },
   components: {
     myTable
   },
@@ -37,6 +41,19 @@ export default {
     
   },
   methods: {
+
+    //隐藏文字
+    toHidden(){
+      var that = this;
+      that.ishidden = false;
+
+    },
+    //搜索
+    toSearch(){
+        var that = this;
+      that.ishidden = true;
+
+    }
      
   }
 }
@@ -68,6 +85,7 @@ export default {
          width: 100%;
          height: 100%;
              border-radius: 28rpx;
+             padding-left: 40rpx;
        }
        .txt{
          position: absolute;

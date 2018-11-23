@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "交易提醒",
   "navigationBarBackgroundColor": "#9F2E36",
-  "navigationBarTextStyle": "white"
+  "navigationBarTextStyle": "white",
+  "disableScroll": true  
+
 }

@@ -1,15 +1,15 @@
 <template>
   <div  class="content" >
        <!-- 有人 -->
-       <view class="has_person" v-show="false">
+       <view class="has_person" v-show="true">
         
           <view class="title">
                   <view class="left">当前授权经理：1人</view>
-                  <view class="right"> <span class="add_icon">+</span> <span>新增</span></view>
+                  <view class="right" @click="addManager()"> <span class="add_icon">+</span> <span>新增</span></view>
           </view>
 
           <!-- 授权人信息 -->
-          <view class="message">
+          <view class="message" @click="editManager()">
                 <view class="headimg"><img src="../../../../static/images/user1@2x.png" alt=""></view>
                 <view class="username">彭于晏</view>
           </view>
@@ -18,11 +18,11 @@
             <!-- 有人 -->
           <view class="title">
                   <view class="left">当前授权财务：1人</view>
-                  <view class="right"> <span class="add_icon">+</span> <span>新增</span></view>
+                  <view class="right" @click="addManager()"> <span class="add_icon">+</span> <span>新增</span></view>
           </view>
 
           <!-- 授权人信息 -->
-          <view class="message">
+          <view class="message"  @click="editManager()">
                 <view class="headimg"><img src="../../../../static/images/user1@2x.png" alt=""></view>
                 <view class="username">张艺兴</view>
           </view>
@@ -37,7 +37,7 @@
           </view>
 
           <!-- 授权人信息 -->
-          <view class="message new">
+          <view class="message new" @click="addManager()">
                 <span class="new_add">+</span>
                 <span class="add_txt">新增</span>
           </view>
@@ -48,7 +48,7 @@
           </view>
 
           <!-- 授权人信息 -->
-          <view class="message new">
+          <view class="message new"  @click="addManager()">
                 <span class="new_add">+</span>
                 <span class="add_txt">新增</span>
           </view>
@@ -66,7 +66,20 @@ export default {
   components: {},
 
   computed: {},
-  methods: {}
+  methods: {
+    // 新增经理
+    addManager(){
+       wx.navigateTo({
+            url:'../addInfo/main'
+      })
+    },
+     // 新增经理
+    editManager(){
+       wx.navigateTo({
+            url:'../modify/main'
+      })
+    }
+  }
 };
 </script>
 

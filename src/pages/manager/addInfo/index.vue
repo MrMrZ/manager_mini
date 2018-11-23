@@ -33,7 +33,7 @@
         </view>
 
 
-        <view class="sure">确定</view>
+        <view class="sure" @click="sure()">确定</view>
 
        </view>
 
@@ -50,7 +50,13 @@ export default {
   components: {},
 
   computed: {},
-  methods: {}
+  methods: {
+    sure(){
+      wx.navigateTo({
+            url:'../addInfo/main'
+      })
+    }
+  }
 };
 </script>
 
