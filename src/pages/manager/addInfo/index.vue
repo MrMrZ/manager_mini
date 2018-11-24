@@ -11,16 +11,16 @@
              <!-- 修改手机号 -->
            <view class="phone_con">
                 <view class="phone">姓名</view>
-                <view class="input_phone"> <input type="number"  ></view>
+                <view class="input_phone"> <input type="text"  v-model="name" ></view>
            </view>
             <!-- 修改手机号 -->
            <view class="phone_con">
                 <view class="phone">手机号</view>
-                <view class="input_phone"> <input type="number" placeholder="请输入新手机号"></view>
+                <view class="input_phone"> <input type="number" placeholder="请输入新手机号" v-model="phoneNum"></view>
            </view>
 
            <!-- 修改手机号 -->
-           <view class="phone_con">
+           <view class="phone_con border_b">
                 <view class="phone">验证码</view>
                 <view class="input_phone"> <input type="number" placeholder="填写验证码"></view>
                 <!-- 获取验证码 -->
@@ -52,7 +52,8 @@ import getCode from "@/components/getCode";
 export default {
   data(){
     return {
-        phoneNum:'18102840611'
+        phoneNum:'',
+        name:''
     }
   },
   components: {
@@ -66,6 +67,18 @@ export default {
             url:'../addInfo/main'
       })
     },
+
+    // 检验只能输入中文
+    velidChinese(name){
+      var that = this;
+       //检测中文的正则
+        var chineseReg = /^[u4e00-u9fa5]+$/;
+        if(!chineseReg.test(name)){
+            return true;
+        }else{
+          return false;
+        }
+    }
     
   }
 };
@@ -86,9 +99,9 @@ export default {
     .left {
       height: 100%;
       float: left;
-      font-family: PingFang-SC-Bold;
+      font-family:PingFang-SC-Medium;
       font-size: 28rpx;
-      color: #000;
+      color: rgb(109,109,109);
       box-sizing: border-box;
       padding-left: 32rpx;
     }
@@ -155,7 +168,7 @@ export default {
     background-color: #fff;
     box-sizing: border-box;
     clear: both;
-    border-bottom: 1px solid rgb(229, 229, 229);
+    border-top: 1px solid rgb(229, 229, 229);
     .phone {
       width: 26%;
       height: 100%;
@@ -165,7 +178,7 @@ export default {
       color: #000;
       box-sizing: border-box;
       padding-left: 32rpx;
-      padding-top: 28rpx;
+      line-height: 110rpx;
     }
     .input_phone {
       width: 40%;
@@ -198,6 +211,9 @@ export default {
       color:rgb(191, 191, 191);
       border: 1px solid rgb(191, 191, 191);
     }
+  }
+  .border_b{
+    border-bottom: 1px solid rgb(229, 229, 229);
   }
 
   .sure{

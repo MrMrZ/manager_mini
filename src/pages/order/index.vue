@@ -3,9 +3,9 @@
        <!-- 搜索框 -->
       <div class="search">
         <div class="left">
-            <input type="text" @focus="toHidden" @blur="toSearch" >
+            <input type="text" @focus="toHidden" @blur="toSearch" v-model="search_txt" >
             <div class="txt" v-show="ishidden">
-               <icon type="search" size="12" />
+               <icon type="search" size="10" />
               <span class="tip">搜索流水号</span>
             </div>
         </div>
@@ -14,7 +14,7 @@
           <div class="month_btn">
                <!-- 时间选择器 -->
             <view class="section">
-              <picker mode="date" :value="date" start="2018-09" end="2020-09" fields="month" @change="bindDateChange">
+              <picker mode="date" :value="date" start="2018-01" end="2050-09" fields="month" @change="bindDateChange">
                 <view class="picker">
                 月账单
                 </view>
@@ -23,13 +23,12 @@
           </div>
         </div>
       </div>
-      <!-- 时间 -->
-      <div class="date">{{date}}</div>
-      <!-- 表单数据 -->
-      <myTable :lists="lists"></myTable>
-
-
-   
+      <scroll-view scroll-y  class="scroll_con"    :scroll-into-view="toView" :scroll-top="scrollTop">
+        <!-- 时间 -->
+        <div class="date">{{date}}</div>
+        <!-- 表单数据 -->
+        <myTable :lists="lists"></myTable>
+      </scroll-view>
   </div>
 </template>
 
@@ -41,30 +40,53 @@ import myTable from "@/components/Table";
 export default {
   data() {
     return {
+      toView: 'red',
+      scrollTop: 0,
       ishidden: true, //是否隐藏
       lists: [
         {
           id: 1,
-          order_id: "20181123001",
+          order_id: "2018112300100",
           type: 1,
           status: 0,
           total: "2200.00",
           server: "176.00",
           real_income: "1944.00",
-          date: "2018-11-23 06:34"
+          date: "2018-11-23 06:34:00"
         },
         {
           id: 2,
-          order_id: "20181123003",
+          order_id: "2018112300301",
           type: 2,
           status: 1,
           total: "2500.00",
           server: "166.00",
           real_income: "2244.00",
-          date: "2018-12-23 06:34"
+          date: "2018-12-23 06:34:00"
+        },
+          {
+          id: 2,
+          order_id: "2018112300301",
+          type: 2,
+          status: 1,
+          total: "2500.00",
+          server: "166.00",
+          real_income: "2244.00",
+          date: "2018-12-23 06:34:00"
+        },
+          {
+          id: 2,
+          order_id: "2018112300301",
+          type: 2,
+          status: 1,
+          total: "2500.00",
+          server: "166.00",
+          real_income: "2244.00",
+          date: "2018-12-23 06:34:00"
         }
       ],
-      date: "2018年09月"
+      date: "2018年11月",
+      search_txt:''
     };
   },
   components: {
@@ -82,6 +104,9 @@ export default {
     toSearch() {
       var that = this;
       that.ishidden = true;
+      that.search_txt = "";
+
+
     },
     bindDateChange: function(e) {
       var that = this;
@@ -91,7 +116,16 @@ export default {
       var tamp = new Date(str).getTime();
       console.log(tamp)
       
-    }
+    },
+     upper: function(e) {
+    console.log(e)
+  },
+  lower: function(e) {
+    console.log(e)
+  },
+  scroll: function(e) {
+    console.log(e)
+  },
   }
 };
 </script>
@@ -102,6 +136,7 @@ export default {
   height: 1109rpx;
   background-color: #f4f4f4;
   box-sizing: border-box;
+  padding-bottom: 150rpx;
   .search {
     width: 100%;
     height: 88rpx;
@@ -127,7 +162,7 @@ export default {
       .txt {
         position: absolute;
         left: 159rpx;
-        top: 0;
+        top: 4rpx;
         text-align: center;
         .tip {
           font-family: PingFang-SC-Regular;
@@ -168,9 +203,23 @@ export default {
           left: 0;
           top: 0;
           text-align: center;
+          .picker{
+            font-family: PingFang-SC-Medium;
+            color:rgb(125,125,125);
+            font-size: 32rpx;
+          }
+        
         }
       }
     }
+  }
+
+  .scroll_con{
+    position: absolute;
+    top: 88rpx;
+    left: 0;
+    bottom: 0rpx;
+
   }
   .date {
     height: 85rpx;

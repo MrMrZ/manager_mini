@@ -7,7 +7,7 @@
 
          <view class="phone_con">
               <span class="number">手机号：</span>
-              <input type="number" placeholder="请输入手机号">
+              <input type="number" placeholder="请输入手机号" v-model="phoneNum">
          </view>
 
          <view class="code_con">
@@ -25,40 +25,56 @@
 
 <script>
 export default {
-  data(){
-    return{
-        time:60, //验证码倒计时
-        isGetCode:false,
-    }
+  data() {
+    return {
+      time: 60, //验证码倒计时
+      isGetCode: false,
+      phoneNum: ""
+    };
   },
   components: {},
 
   computed: {},
   methods: {
-      // 获取验证码
-      getCode(){
-        var that = this;
-        that.isGetCode = true;
-        var timer = setInterval(function(){
-            that.time--;
-            if(that.time<0){
-               that.isGetCode = false;
-               clearInterval(timer);
-               that.time = 60;
-            }
-        },1000);
-      },
-       // 判断是否为手机号
-        isPoneAvailable(pone) {
-            var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
-            if (!myreg.test(pone)) {
-                return false;
-            } else {
-                return true;
-            }
-        },
+    // 获取验证码
+    getCode() {
+      var that = this;
+      if (!that.phoneNum) {
+        wx.showToast({
+          title: "手机号不能为空",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
 
-
+      if (!that.isPoneAvailable(that.phoneNum)) {
+        wx.showToast({
+          title: "手机号格式不对",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+      that.isGetCode = true;
+      var timer = setInterval(function() {
+        that.time--;
+        if (that.time < 0) {
+          that.isGetCode = false;
+          clearInterval(timer);
+          that.time = 60;
+        }
+      }, 1000);
+    },
+    // 判断是否为手机号
+    isPoneAvailable(pone) {
+      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+      if (!myreg.test(pone)) {
+        return false;
+      } else {
+        return true;
+      }
+    }
   }
 };
 </script>
@@ -173,8 +189,8 @@ export default {
       font-family: PingFang-SC-Regular;
       text-align: center;
     }
-    .active{
-      color:rgb(191, 191, 191);
+    .active {
+      color: rgb(191, 191, 191);
     }
   }
 

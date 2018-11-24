@@ -21,13 +21,13 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "楼上请",
-    "navigationBarTextStyle": "black",
     "backgroundColor":"#fcc"
   },
   "tabBar": {
-    "color": "#202020",
-    "selectedColor": "#ec5045",
+    "color": "#B72530",
+    "selectedColor": "#B72530",
     "backgroundColor":"#fff",
+    "borderStyle":"white",
     "list": [
       {
       "pagePath": "pages/index/main",

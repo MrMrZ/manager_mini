@@ -10,7 +10,7 @@
                 <view class="select" v-show="isSelect===1">  <img src="../../../../static/images/success@2x.png" alt=""></view>
 
           </view>
-          <view class="message"  @click="toSelect(2)">
+          <view class="message border_b"  @click="toSelect(2)">
                 <view class="username">更换手机号</view>
                 <view class="select" v-show="isSelect===2">  <img src="../../../../static/images/success@2x.png" alt=""></view>
           </view>
@@ -23,11 +23,11 @@
             <!-- 修改手机号 -->
            <view class="phone_con">
                 <view class="phone">手机号</view>
-                <view class="input_phone"> <input type="number" placeholder="请输入新手机号"></view>
+                <view class="input_phone"> <input type="number" placeholder="请输入新手机号" v-model="phoneNum"></view>
            </view>
 
            <!-- 修改手机号 -->
-           <view class="phone_con">
+           <view class="phone_con border_b">
                 <view class="phone">验证码</view>
                 <view class="input_phone"> <input type="number" placeholder="填写验证码"></view>
                 <!-- <view class="getCode" v-show="!isGetCode" @click="getCode">获取验证码</view>
@@ -60,7 +60,7 @@ import getCode from "@/components/getCode";
 export default {
   data(){
     return {
-        phoneNum:'18813960131',
+        phoneNum:'',
         isSelect:2, //1是离职，2是更换手机
     }
   },
@@ -94,9 +94,9 @@ export default {
     .left {
       height: 100%;
       float: left;
-      font-family: PingFang-SC-Bold;
+      font-family:PingFang-SC-Medium;
       font-size: 28rpx;
-      color: #000;
+      color: rgb(109,109,109);
       box-sizing: border-box;
       padding-left: 32rpx;
     }
@@ -107,13 +107,14 @@ export default {
     font-family: AdobeHeitiStd-Regular;
   }
 
+
   .message {
     width: 100%;
     height: 110rpx;
     background-color: #fff;
     box-sizing: border-box;
     clear: both;
-    border-bottom: 1px solid rgb(229, 229, 229);
+    border-top: 1px solid rgb(229, 229, 229);
 
     .username {
       width: 60%;
@@ -163,7 +164,7 @@ export default {
     background-color: #fff;
     box-sizing: border-box;
     clear: both;
-    border-bottom: 1px solid rgb(229, 229, 229);
+    border-top: 1px solid rgb(229, 229, 229);
     .phone {
       width: 26%;
       height: 100%;
@@ -208,7 +209,9 @@ export default {
       border: 1px solid rgb(191, 191, 191);
     }
   }
-
+.border_b{
+    border-bottom: 1px solid rgb(229, 229, 229);
+  }
   .sure{
     width: 690rpx;
     height:88rpx ;

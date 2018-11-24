@@ -13,12 +13,40 @@ export default {
       time: 60
     };
   },
-  props:['phoneNum'],
+  props: ["phoneNum"],
   methods: {
+    // 判断是否为手机号
+    isPoneAvailable(phone) {
+      var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+      if (!myreg.test(phone)) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     // 获取验证码
     getCode() {
       var that = this;
-      console.log(that.phoneNum,'===手机号=====');
+      console.log(that.phoneNum, "===手机号=====");
+
+      if (!that.phoneNum) {
+        wx.showToast({
+          title: "手机号不能为空",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+
+      if (!that.isPoneAvailable(that.phoneNum)) {
+        wx.showToast({
+          title: "手机号格式不对",
+          icon: "none",
+          duration: 2000
+        });
+        return;
+      }
+
       that.isGetCode = true;
       var timer = setInterval(() => {
         that.time--;
@@ -33,7 +61,7 @@ export default {
 };
 </script>
 
- <style lang="less" scoped>
+<style lang="less" scoped>
 .content {
   .getCode {
     float: right;

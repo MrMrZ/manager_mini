@@ -22,10 +22,14 @@
                   <view class="item">
                       <view class="number">{{item.total}}</view>
                       <view  class="des">账单金额</view>
+                      <span class="line"></span>
+
                   </view>
                   <view class="item">
                       <view class="number">{{item.server}}</view>
                       <view  class="des">平台服务费</view>
+                      <span class="line"></span>
+
                   </view>
                   <view class="item">
                       <view class="number">{{item.real_income}}</view>
@@ -42,10 +46,7 @@
               用户支付时间：{{item.date}}
             </div>
        </div>
-      
-
   </div>
-  
 </template>
 
 <script>
@@ -106,7 +107,7 @@ export default {
         display: inline-block;
         height: 73rpx;
         float: left;
-        padding-top: 4rpx;
+        padding-top: 6rpx;
         .point {
           display: inline-block;
           width: 12rpx;
@@ -143,10 +144,13 @@ export default {
       height: 198rpx;
       display: flex;
       justify-content: space-around;
+
       .item {
+        width: 33.3%;
         text-align: center;
         box-sizing: border-box;
         padding-top: 40rpx;
+        position: relative;
         .number {
           font-family: PingFang-SC-Regular;
           font-size: 44rpx;
@@ -157,6 +161,15 @@ export default {
           font-size: 28rpx;
           color: rgb(43, 43, 43);
           margin-top: 20rpx;
+        }
+        .line{
+          display: inline-block;
+          height:68%;
+          width: 1rpx;
+          border-right: 1px solid rgb(224,224,224);
+          position: absolute;
+          right: 0;
+          top: 40rpx;
         }
       }
     }

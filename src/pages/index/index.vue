@@ -8,13 +8,17 @@
             <div class="des">本月流水净收入</div>
         </div>
 
-        <div class="info">通知</div>
+       <div class="info">通知</div>
+       
+        
 
-        <div class="msg" :class="{'mt30':index!=0}"  v-for="(item,index) in lists" :key="item.id" @click="toDetails()">
+        <scroll-view scroll-y  class="scroll_con"  bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" :scroll-into-view="toView" :scroll-top="scrollTop">
+        <div class="msg" :class="{'mt20':index!=0}"  v-for="(item,index) in lists" :key="item.id" @click="toDetails()">
           <div class="title">{{item.type}}</div>
           <div class="details">{{item.des}}</div>
         </div>
-
+        
+      </scroll-view>
     
   </div>
 </template>
@@ -24,9 +28,26 @@
 export default {
   data() {
     return {
+          toView: 'red',
+      scrollTop: 0,
       total: "3,5000.00",
       lists: [
         {
+          id: 1,
+          type: "交易提醒",
+          des:   "您的微信钱包于2018年11月21日17:47:00已收入人民币3.000.00元。点击查看详情。"
+        },
+        {
+          id: 2,
+          type: "交易提醒",
+          des: "您的微信钱包于2018年11月21日17:47:00已收入人民币3.000.00元。点击查看详情。"
+        },
+        {
+          id: 3,
+          type: "系统提醒",
+          des:"您的微信钱包于2018年11月21日17:47:00已收入人民币3.000.00元。点击查看详情。"
+        },
+            {
           id: 1,
           type: "交易提醒",
           des:   "您的微信钱包于2018年11月21日17:47:00已收入人民币3.000.00元。点击查看详情。"
@@ -67,7 +88,7 @@ export default {
   width: 100%;
   height: 1109rpx;
   background-color: #f4f4f4;
-  box-sizing: border-box;
+    padding-bottom: 150rpx;
   //  总收入金额
   .total_count {
     width: 100%;
@@ -103,6 +124,13 @@ export default {
     }
   }
 
+  .scroll_con{
+    position: absolute;
+    top: 391rpx;
+    left: 0;
+    bottom: 0rpx;
+    // padding-bottom: 20rpx;
+  }
   //  通知
   .info {
     height: 83rpx;
@@ -110,32 +138,37 @@ export default {
     color: rgb(106, 106, 106);
     font-size: 34rpx;
     box-sizing: border-box;
-    padding-top: 25rpx;
+    line-height: 83rpx;
     padding-left: 35rpx;
   }
 
   // 消息
   .msg {
     width: 100%;
-    height: 172rpx;
+    // height: 164rpx;
     background-color: #fff;
     box-sizing: border-box;
     padding-top: 20rpx;
     padding-left: 32rpx;
+    padding-right: 32rpx;
+    padding-bottom: 20rpx;
+
     .title {
       font-family: PingFang-SC-Medium;
       font-size: 34rpx;
       color: #000;
+      line-height: 1;
     }
     .details {
       font-family: PingFang-SC-Regular;
       font-size: 26rpx;
       color: rgb(106, 106, 106);
       margin-top: 16rpx;
+
     }
   }
-  .mt30 {
-    margin-top: 30rpx;
+  .mt20 {
+    margin-top: 20rpx;
   }
 }
 </style>
